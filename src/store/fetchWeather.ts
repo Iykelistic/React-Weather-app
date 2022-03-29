@@ -1,17 +1,24 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ExtendedForecastData, WeatherData } from '../api/types';
-import { fetchExtendedForecastData, fetchWeatherData } from '../api/weather';
-import { getNextSevenDays } from '../utils/dateUtils';
-import { kelvinToCelcius } from '../utils/unitConversion';
-import { setIsInitial, setIsLoading } from './reducers/appReducer';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { ExtendedForecastData, WeatherData } from "../api/types";
+import { fetchExtendedForecastData, fetchWeatherData } from "../api/weather";
+import { getNextSevenDays } from "../utils/dateUtils";
+import { kelvinToCelcius } from "../utils/unitConversion";
+import { setIsInitial, setIsLoading } from "./reducers/appReducer";
 
 export const fetchWeather = createAsyncThunk(
-  'weather/fetchWeather',
-  async (city: string | { lat: number; lng: number }, { dispatch, rejectWithValue, fulfillWithValue }) => {
+  "weather/fetchWeather",
+  async (
+    city: string | { lat: number; lng: number },
+    { dispatch, rejectWithValue, fulfillWithValue }
+  ) => {
     dispatch(setIsLoading(true));
 
     try {
-      const res = await Promise.all([fetchWeatherData(city), fetchExtendedForecastData(city)]);
+      let res = await Promise.all([
+        fetchWeatherData(city),
+        fetchExtendedForecastData(city),
+      ]);
+      console.log(res);
       dispatch(setIsLoading(false));
 
       if (res[0].cod === 200) {
@@ -21,7 +28,7 @@ export const fetchWeather = createAsyncThunk(
       return rejectWithValue(res[0].message);
     } catch {
       dispatch(setIsLoading(false));
-      return rejectWithValue('Error');
+      return rejectWithValue("Error");
     }
   }
 );
@@ -47,7 +54,7 @@ export const transformWeatherData = (
 
   const next7Days = getNextSevenDays();
 
-  res[1].list.forEach((i: any, index: number) => {
+  /*res[1].list.forEach((i: any, index: number) => {
     forecast.push({
       day: next7Days[index],
       temp: {
@@ -59,7 +66,7 @@ export const transformWeatherData = (
         main: i.weather[0].main,
       },
     });
-  });
+  });*/
 
   return {
     weather,
