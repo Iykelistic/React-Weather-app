@@ -46,9 +46,9 @@ npm start
 
 1. Create a Dockerfile with the following contents:
 
-    - **FROM nginx
-    - **COPY container /
-    - **COPY build/usr/share/nginx/html
+    - **FROM nginx**
+    - **COPY container /**
+    - **COPY build/usr/share/nginx/html**
     
 2. Build the React application - This process generates the build/ directory containing static files
 
