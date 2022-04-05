@@ -28,9 +28,7 @@ REACT_APP_WEATHER_API_KEY=YOUR_KEY
 
 Finally clone this repository, install dependencies and run the local server
 
-```bash
-git clone https://github.com/esnz/reactweather.git
-```
+
 
 ```bash
 cd reactweather
@@ -42,6 +40,20 @@ npm start
 
 [OpenWeatherMap](https://openweathermap.org/ 'OpenWeatherMap') (Weather data API)
 
-[Algolia Places](https://community.algolia.com/places/ 'Algolia Places') (Place suggestion API)
 
 [Icons8.com](https://www.icons8.com 'Icons8.com') (Weather icons)
+
+
+## Deployment Instructions To Docker
+
+1. Create a Dockerfile with the following contents:
+
+    FROM nginx
+    COPY container /
+    COPY build/usr/share/nginx/html
+    
+2. Build the React application - This process generates the build/ directory containing static files
+
+3. Build the Docker Image, it will create a runnable docker image.
+
+4. Publish the Docker Image to some repository or run it on the local machine.
