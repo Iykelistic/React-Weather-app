@@ -12,7 +12,6 @@ Weather App built with React.
 ## Features
 
 - **Weather forecast for any city or place**
-- **Extended 7 days forecast**
 - **Find user location weather by utilizing GeolocationAPI**
 - **One-click Celcius to Fahrenheit conversion and vice versa**
 - **Dark Mode**
@@ -40,7 +39,6 @@ npm start
 
 [OpenWeatherMap](https://openweathermap.org/ 'OpenWeatherMap') (Weather data API)
 
-
 [Icons8.com](https://www.icons8.com 'Icons8.com') (Weather icons)
 
 
@@ -48,9 +46,9 @@ npm start
 
 1. Create a Dockerfile with the following contents:
 
-    FROM nginx
-    COPY container /
-    COPY build/usr/share/nginx/html
+    - **FROM nginx
+    - **COPY container /
+    - **COPY build/usr/share/nginx/html
     
 2. Build the React application - This process generates the build/ directory containing static files
 
